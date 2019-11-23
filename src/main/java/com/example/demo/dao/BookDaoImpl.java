@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,13 @@ public class BookDaoImpl extends GenericDaoImpl<Book, Long> implements BookDao {
     	System.out.println("Book size "+books.size());
         return books;
     }
+
+	@Override
+	public List<Book> findBookByTitle(String title) {
+		String hql = "from Book where title = :title";
+		Query query = this.getCurrentSession().createQuery(hql);
+		query.setParameter("title", title);
+		
+		return query.list();
+	}
 }

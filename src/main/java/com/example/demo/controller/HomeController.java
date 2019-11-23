@@ -18,7 +18,7 @@ public class HomeController {
 	public String home()
 	{
 		System.out.println("Controller Home");
-		List<Book> books = (List<Book>) this.bookDao.getAllBook();
+		List<Book> books = (List<Book>) this.bookDao.findBookByTitle("Java");
 		System.out.println("Book size "+books.size());
 		for(Book b : books)
 		{

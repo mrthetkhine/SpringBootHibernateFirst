@@ -7,4 +7,6 @@ import com.example.demo.entity.Book;
 
 public interface BookDao extends GenericDao<Book,Long>{
 	public List getAllBook() ;
+	
+	List<Book> findBookByTitle(String title);
 }
