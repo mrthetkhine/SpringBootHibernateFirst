@@ -31,7 +31,7 @@ public class Book implements Serializable {
 	Long id;
 	
 	@Column(name="title")
-	String tile;
+	String title;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_detail_id")
@@ -46,11 +46,11 @@ public class Book implements Serializable {
 	}
 
 	public String getTile() {
-		return tile;
+		return title;
 	}
 
 	public void setTile(String tile) {
-		this.tile = tile;
+		this.title = tile;
 	}
 
 	public BookDetail getBookDetail() {

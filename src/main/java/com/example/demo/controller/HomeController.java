@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.dao.BookDao;
+import com.example.demo.dao.BookDaoImpl;
 import java.util.*;
 import com.example.demo.entity.*;
 @Controller	
@@ -18,6 +19,7 @@ public class HomeController {
 	{
 		System.out.println("Controller Home");
 		List<Book> books = (List<Book>) this.bookDao.getAllBook();
+		System.out.println("Book size "+books.size());
 		for(Book b : books)
 		{
 			System.out.println("Book "+b.getTile());
