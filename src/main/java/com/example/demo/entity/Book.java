@@ -11,13 +11,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.example.demo.sqlconstant.SqlConstant;
+
 @Entity
 @Table(name="book")
+@NamedQueries({
+	@NamedQuery(name=SqlConstant.GET_BOOK_BY_ID, query="select b from Book b LEFT JOIN FETCH b.bookDetail bd where b.id = :id"),
+})
+
+
 public class Book implements Serializable {
 
 	/**

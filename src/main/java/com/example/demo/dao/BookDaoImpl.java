@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.common.GenericDaoImpl;
 import com.example.demo.entity.Book;
+import com.example.demo.sqlconstant.SqlConstant;
 
 @Repository
 @Transactional
@@ -48,6 +49,17 @@ public class BookDaoImpl extends GenericDaoImpl<Book, Long> implements BookDao {
 		// TODO Auto-generated method stub
 		String hql = "select b from Book b LEFT JOIN FETCH b.bookDetail bd where b.id = :id";
 		Query query = this.getCurrentSession().createQuery(hql);
+		query.setLong("id", id);
+		Book book = (Book) query.uniqueResult();
+		//book.getBookDetail();
+		return book;
+	}
+
+	@Override
+	public Book getByIdWithNameQuery(Long id) {
+		// TODO Auto-generated method stub
+		Query query = this.getCurrentSession()
+						.createNamedQuery(SqlConstant.GET_BOOK_BY_ID, Book.class);
 		query.setLong("id", id);
 		Book book = (Book) query.uniqueResult();
 		//book.getBookDetail();
