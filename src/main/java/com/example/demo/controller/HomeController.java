@@ -24,6 +24,9 @@ public class HomeController {
 		{
 			System.out.println("Book "+b.getTile());
 		}
+		
+		Book java = this.bookDao.getById(1L);
+		System.out.println("Book "+java.getTile() + " Detail "+java.getBookDetail().getContent());
 		return "home";
 	}
 }

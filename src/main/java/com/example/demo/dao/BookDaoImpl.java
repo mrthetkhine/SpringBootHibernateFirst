@@ -42,4 +42,14 @@ public class BookDaoImpl extends GenericDaoImpl<Book, Long> implements BookDao {
 		
 		return query.list();
 	}
+
+	@Override
+	public Book getById(Long id) {
+		// TODO Auto-generated method stub
+		String hql = "from Book where id = :id";
+		Query query = this.getCurrentSession().createQuery(hql);
+		query.setLong("id", id);
+		
+		return (Book) query.uniqueResult();
+	}
 }
