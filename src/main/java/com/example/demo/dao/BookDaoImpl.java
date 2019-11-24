@@ -89,4 +89,15 @@ public class BookDaoImpl extends GenericDaoImpl<Book, Long> implements BookDao {
 		
 		return bookDtos;
 	}
+
+	@Override
+	public int updateBookTitle(Long id, String title) {
+		String hql = "update Book set title = :title WHERE id = :id";
+		Query query = this.getCurrentSession().createQuery(hql);
+		query.setString("title", title);
+		query.setLong("id", id);
+		
+		return query.executeUpdate();
+		
+	}
 }

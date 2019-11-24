@@ -28,6 +28,8 @@ public class HomeController {
 			System.out.println("Book "+b.getTitle());
 		}
 		
+		int result = this.bookDao.updateBookTitle(1L, "JavaSE");
+		System.out.println("Result after update "+result);
 		Book java = this.bookDao.getByIdWithNameQuery(1L);
 		
 		System.out.println("Book >>"+java.getTitle() + " Detail "+java.getBookDetail().getContent());
