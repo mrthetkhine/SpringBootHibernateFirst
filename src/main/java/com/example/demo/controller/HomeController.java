@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.dao.BookDao;
@@ -15,7 +16,7 @@ public class HomeController {
 	BookDao bookDao;
 	
 	@GetMapping("/")
-	public String home()
+	public String home(Model model)
 	{
 		System.out.println("Controller Home");
 		List<Book> books = (List<Book>) this.bookDao.findBookByTitle("Java");
@@ -26,6 +27,7 @@ public class HomeController {
 		}
 		
 		Book java = this.bookDao.getById(1L);
+		model.addAttribute("java", java);
 		System.out.println("Book "+java.getTile() + " Detail "+java.getBookDetail().getContent());
 		return "home";
 	}
