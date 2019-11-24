@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.dao.BookDao;
 import com.example.demo.dao.BookDaoImpl;
+import com.example.demo.dto.BookDto;
+
 import java.util.*;
 import com.example.demo.entity.*;
 @Controller	
@@ -32,6 +34,12 @@ public class HomeController {
 		model.addAttribute("java", java);
 		
 		System.out.println("Book count "+this.bookDao.getTotalBook());
+		
+		List<BookDto> booksDto = this.bookDao.getAllTitle();
+		for(BookDto dto : booksDto)
+		{
+			System.out.println("Book title "+dto.getTitle());
+		}
 		return "home";
 	}
 }
