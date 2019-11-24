@@ -23,12 +23,13 @@ public class HomeController {
 		System.out.println("Book size "+books.size());
 		for(Book b : books)
 		{
-			System.out.println("Book "+b.getTile());
+			System.out.println("Book "+b.getTitle());
 		}
 		
 		Book java = this.bookDao.getById(1L);
+		
+		System.out.println("Book >>"+java.getTitle() + " Detail "+java.getBookDetail().getContent());
 		model.addAttribute("java", java);
-		System.out.println("Book "+java.getTile() + " Detail "+java.getBookDetail().getContent());
 		return "home";
 	}
 }
