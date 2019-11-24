@@ -30,6 +30,8 @@ public class HomeController {
 		
 		System.out.println("Book >>"+java.getTitle() + " Detail "+java.getBookDetail().getContent());
 		model.addAttribute("java", java);
+		
+		System.out.println("Book count "+this.bookDao.getTotalBook());
 		return "home";
 	}
 }

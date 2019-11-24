@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -24,8 +26,11 @@ import com.example.demo.sqlconstant.SqlConstant;
 @Table(name="book")
 @NamedQueries({
 	@NamedQuery(name=SqlConstant.GET_BOOK_BY_ID, query="select b from Book b LEFT JOIN FETCH b.bookDetail bd where b.id = :id"),
+	
 })
-
+@NamedNativeQueries({
+	@NamedNativeQuery(name = SqlConstant.GET_BOOK_COUNT, query = "select count(1) from Book")
+})
 
 public class Book implements Serializable {
 
