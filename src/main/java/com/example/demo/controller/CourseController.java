@@ -25,7 +25,7 @@ public class CourseController {
 	public String course(Model model)
 	{
 		System.out.println("Controller course");
-		List<Course> courses = this.courseDao.findCourseByName("");
+		List<Course> courses = this.courseDao.findCourseByName("Java");
 		model.addAttribute("courses", courses);
 		return "courses";
 	}
