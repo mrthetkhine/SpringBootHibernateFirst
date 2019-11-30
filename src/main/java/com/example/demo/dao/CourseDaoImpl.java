@@ -24,7 +24,12 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Long> implements Cours
 		Criteria c = this.getCurrentSession()
 					.createCriteria(Course.class)
 					.createAlias("users", "users",JoinType.LEFT_OUTER_JOIN)
-					.add(Restrictions.like("name", name, MatchMode.ANYWHERE))
+					.add(Restrictions.or(
+							Restrictions.like("name", name, MatchMode.ANYWHERE),
+							Restrictions.like("description", name, MatchMode.ANYWHERE)
+							)
+						)
+					
 					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 					
 					
