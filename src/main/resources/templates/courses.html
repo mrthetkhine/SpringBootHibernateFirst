@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+   <head>
+     <title>Spring Boot App</title>
+   </head>
+   <body>
+     <h1>Welcome to...</h1>
+     <table>
+      <tr th:each="course: ${courses}">
+			<td><span th:text="${course.id}"></span></td>
+		  <td><span th:text="${course.name}"></span></td>
+		  <td><span th:text="${course.description}"></span></td>
+		  <!-- 
+		  <td><span th:text="${course.users}"></span></td>
+		   -->
+     </table>
+    
+</body>
+</html>
