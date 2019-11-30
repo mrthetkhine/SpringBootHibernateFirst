@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -99,5 +103,14 @@ public class BookDaoImpl extends GenericDaoImpl<Book, Long> implements BookDao {
 		
 		return query.executeUpdate();
 		
+	}
+
+	@Override
+	public List<Book> findBookByDescription(String des) {
+		Criteria c = this.getCurrentSession()
+					.createCriteria(Book.class)
+					.createAlias("bookDetail", "bd",JoinType.LEFT_OUTER_JOIN)
+					.add(Restrictions.like("bd.content", des, MatchMode.ANYWHERE));
+		return c.list();
 	}
 }

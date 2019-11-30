@@ -15,4 +15,6 @@ public interface BookDao extends GenericDao<Book,Long>{
 	int getTotalBook();
 	List<BookDto> getAllTitle();
 	int updateBookTitle(Long id, String title);
+	
+	List<Book> findBookByDescription(String des);
 }
