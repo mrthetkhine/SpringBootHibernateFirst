@@ -27,8 +27,13 @@ public class CourseController {
 		System.out.println("Controller course");
 		Long noOfCourse = this.courseDao.getNoOfCourse();
 		System.out.println("No of course "+ noOfCourse);
-		List<Course> courses = this.courseDao.findCourseByName("");
+		
+		Course course = new Course();
+		course.setName("JavaSE");
+		
+		List<Course> courses = this.courseDao.findCourseByQBE(course);
 		model.addAttribute("courses", courses);
+		
 		return "courses";
 	}
 	

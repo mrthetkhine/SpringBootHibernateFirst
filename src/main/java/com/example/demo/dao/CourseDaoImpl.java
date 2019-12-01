@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -44,6 +45,15 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Long> implements Cours
 				.createCriteria(Course.class)
 				.setProjection(Projections.rowCount());
 		return (Long)(c.list().get(0));
+	}
+
+	@Override
+	public List<Course> findCourseByQBE(Course course) {
+		Criteria c = this.getCurrentSession()
+				.createCriteria(Course.class)
+				.createAlias("users", "users",JoinType.LEFT_OUTER_JOIN);
+				c.add(Example.create(course));
+		return c.list();
 	}
 
 }

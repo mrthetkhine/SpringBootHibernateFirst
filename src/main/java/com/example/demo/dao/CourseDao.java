@@ -10,5 +10,6 @@ public interface CourseDao extends GenericDao<Course,Long>{
 	
 	List<Course> findCourseByName(String name);
 	Long getNoOfCourse();
+	List<Course> findCourseByQBE(Course course);
  
 }
