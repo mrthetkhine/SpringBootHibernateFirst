@@ -9,5 +9,6 @@ import com.example.demo.entity.Course;
 public interface CourseDao extends GenericDao<Course,Long>{
 	
 	List<Course> findCourseByName(String name);
+	Long getNoOfCourse();
  
 }

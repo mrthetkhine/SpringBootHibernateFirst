@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
@@ -29,11 +31,19 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Long> implements Cours
 							Restrictions.like("description", name, MatchMode.ANYWHERE)
 							)
 						)
-					
+					.addOrder(Order.desc("name"))
 					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 					
 					
 		return c.list();
+	}
+
+	@Override
+	public Long getNoOfCourse() {
+		Criteria c = this.getCurrentSession()
+				.createCriteria(Course.class)
+				.setProjection(Projections.rowCount());
+		return (Long)(c.list().get(0));
 	}
 
 }
